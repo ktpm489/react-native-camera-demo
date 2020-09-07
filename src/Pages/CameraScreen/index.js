@@ -90,7 +90,11 @@ export default class ExampleApp extends PureComponent {
         <View style={styles.imageOvalContainer}>
           <View
             style={
-              isIphoneX || isNotchAndroid ? styles.imageOvalX : styles.imageOval
+              Platform.OS === 'android'
+                ? styles.imageOvalAndroid
+                : isIphoneX
+                ? styles.imageOvalX
+                : styles.imageOval
             }
           />
         </View>
@@ -187,6 +191,17 @@ const styles = StyleSheet.create({
     borderRadius: height(25),
     borderColor: '#FF9DB8',
     transform: [{scaleY: 1.4}],
+  },
+  imageOvalAndroid: {
+    position: 'relative',
+    height: height(52),
+    width: width(92),
+    top: height(10) + heightNavBar,
+    left: width(4),
+    borderWidth: width(0.5),
+    borderRadius: height(25),
+    borderColor: '#FF9DB8',
+    transform: [{scaleY: 1.35}],
   },
   centerItem: {
     alignItems: 'center',
